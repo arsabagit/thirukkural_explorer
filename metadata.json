@@ -1,0 +1,5 @@
+{
+  "name": "Thirukkural Explorer",
+  "description": "Explore all 1330 Thirukkurals with search, filtering by Athikaram, and Excel export functionality.",
+  "requestFramePermissions": []
+}
