@@ -100,7 +100,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <BookOpen className="h-8 w-8" />
-            <h1 className="text-2xl font-bold tracking-tight">குறள்வளம் | KuralValam</h1>
+            <h1 className="text-2xl font-bold tracking-tight">குறள் வளம் | Kural Valam</h1>
           </div>
           <div className="text-amber-100 text-sm font-medium">
             1330 Kurals • 133 Athikarams
