@@ -7,8 +7,18 @@ import { useState, useMemo } from 'react';
 import { Download, Search, BookOpen, FilterX } from 'lucide-react';
 import * as XLSX from 'xlsx';
 import kuralsData from './data/merged_kurals.json';
+import { Analytics } from "@vercel/analytics/react"
 
 export default function App() {
+  return (
+    <>
+      <Analytics />
+      <MainApp />
+    </>
+  );
+}
+
+function MainApp() {
   const [kuralNoSearch, setKuralNoSearch] = useState('');
   const [kuralTextSearch, setKuralTextSearch] = useState('');
   const [chapterNoSearch, setChapterNoSearch] = useState('');
