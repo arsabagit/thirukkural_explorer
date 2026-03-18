@@ -295,8 +295,6 @@ function MainApp() {
           </div>
         </div>
       </main>
-        </div>
-      </main>
 
       <footer className="bg-stone-900 text-stone-300 pt-16 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
