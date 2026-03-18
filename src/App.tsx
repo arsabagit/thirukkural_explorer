@@ -24,9 +24,9 @@ function MainApp() {
   // Use a simple API to track and display total visitors
   // This is privacy-friendly as it only counts hits to this specific key
   useEffect(() => {
-    fetch('https://api.countapi.xyz/hit/kuralvalam.com/visits')
+    fetch('https://api.counterapi.dev/v1/kuralvalam/visits/up')
       .then(res => res.json())
-      .then(data => setVisitorCount(data.value))
+      .then(data => setVisitorCount(data.count))
       .catch(() => setVisitorCount(null));
   }, []);
 
@@ -369,7 +369,7 @@ function MainApp() {
               </p>
             </div>
             <p className="mt-6 text-[10px] text-stone-500 uppercase tracking-widest">
-              Real-time Website Traffic | Visited since 2024
+              Real-time Website Traffic | Visited since 2023
             </p>
           </div>
 
