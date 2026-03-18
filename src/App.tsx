@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useMemo } from 'react';
-import { Download, Search, BookOpen, FilterX } from 'lucide-react';
+import { useState, useMemo, useEffect } from 'react';
+import { Download, Search, BookOpen, FilterX, Send, Twitter, Facebook, Instagram, Linkedin } from 'lucide-react';
 import * as XLSX from 'xlsx';
 import kuralsData from './data/merged_kurals.json';
 import { Analytics } from "@vercel/analytics/react"
@@ -19,6 +19,17 @@ export default function App() {
 }
 
 function MainApp() {
+  const [visitorCount, setVisitorCount] = useState<number | null>(null);
+  
+  // Use a simple API to track and display total visitors
+  // This is privacy-friendly as it only counts hits to this specific key
+  useEffect(() => {
+    fetch('https://api.countapi.xyz/hit/kuralvalam.com/visits')
+      .then(res => res.json())
+      .then(data => setVisitorCount(data.value))
+      .catch(() => setVisitorCount(null));
+  }, []);
+
   const [kuralNoSearch, setKuralNoSearch] = useState('');
   const [kuralTextSearch, setKuralTextSearch] = useState('');
   const [chapterNoSearch, setChapterNoSearch] = useState('');
@@ -284,6 +295,94 @@ function MainApp() {
           </div>
         </div>
       </main>
+        </div>
+      </main>
+
+      <footer className="bg-stone-900 text-stone-300 pt-16 pb-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            {/* Brand Section */}
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3 text-white">
+                <BookOpen className="h-8 w-8 text-amber-500" />
+                <span className="text-xl font-bold tracking-tight">KURAL VALAM</span>
+              </div>
+              <p className="text-sm leading-relaxed text-stone-400">
+                Inspiring life through the timeless wisdom of Thirukkural. A modern home for ancient Tamil ethics.
+              </p>
+            </div>
+
+            {/* Explore Section */}
+            <div>
+              <h3 className="text-sm font-bold uppercase tracking-widest text-amber-500 mb-6">Explore</h3>
+              <ul className="space-y-3 text-sm">
+                <li><a href="#" className="hover:text-white transition-colors">Home</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">About Thirukkural</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">All Chapters</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Themes</a></li>
+              </ul>
+            </div>
+
+            {/* Resources Section */}
+            <div>
+              <h3 className="text-sm font-bold uppercase tracking-widest text-amber-500 mb-6">Resources</h3>
+              <ul className="space-y-3 text-sm">
+                <li><a href="#" className="hover:text-white transition-colors">Commentaries</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Kural of the Day</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Daily Wisdom</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Support</a></li>
+              </ul>
+            </div>
+
+            {/* Social & Newsletter Section */}
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-sm font-bold uppercase tracking-widest text-amber-500 mb-6">Foliage</h3>
+                <div className="flex space-x-5">
+                  <a href="#" className="text-stone-400 hover:text-white transition-colors"><Twitter className="h-5 w-5" /></a>
+                  <a href="#" className="text-stone-400 hover:text-white transition-colors"><Facebook className="h-5 w-5" /></a>
+                  <a href="#" className="text-stone-400 hover:text-white transition-colors"><Instagram className="h-5 w-5" /></a>
+                  <a href="#" className="text-stone-400 hover:text-white transition-colors"><Linkedin className="h-5 w-5" /></a>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <h3 className="text-sm font-bold uppercase tracking-widest text-amber-500">Newsletter</h3>
+                <div className="flex">
+                  <input 
+                    type="email" 
+                    placeholder="Email Input" 
+                    className="bg-stone-800 border-none rounded-l-lg px-4 py-2 text-sm w-full focus:ring-1 focus:ring-amber-500"
+                  />
+                  <button className="bg-amber-600 hover:bg-amber-700 text-white rounded-r-lg px-4 py-2 text-sm font-bold transition-colors">
+                    <Send className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* View Counter Section */}
+          <div className="flex flex-col items-center justify-center py-12 border-t border-stone-800">
+            <h4 className="text-lg font-serif italic text-amber-100 mb-6">Live Views</h4>
+            <div className="bg-stone-800/50 border border-amber-900/30 rounded-2xl px-12 py-8 text-center shadow-inner">
+              <p className="text-xs uppercase tracking-[0.2em] text-amber-600/70 mb-2 font-bold">Total Visitors</p>
+              <p className="text-5xl font-bold text-amber-500 tracking-tighter">
+                {visitorCount ? visitorCount.toLocaleString() : '---'}
+              </p>
+            </div>
+            <p className="mt-6 text-[10px] text-stone-500 uppercase tracking-widest">
+              Real-time Website Traffic | Visited since 2024
+            </p>
+          </div>
+
+          {/* Copyright Section */}
+          <div className="pt-8 border-t border-stone-800 text-center">
+            <p className="text-[11px] text-stone-500 tracking-wide uppercase">
+              © 2024 Kural Valam | Built with reverence for Thirukkural | All Rights Reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
